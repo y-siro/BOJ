@@ -42,7 +42,6 @@ int main(void) {
 			cnt++;
 		}
 	}
-
 	cout << cnt;
 	return 0;
 }

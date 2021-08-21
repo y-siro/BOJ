@@ -41,7 +41,7 @@ int main(void){
 			return 0;
 	}
 	
-	while(vv.size()!=0){
+	while(vv.size()){
 		for(int i=0;i<v.size();i++){
 			for(int j=0;j<vv.size();j++){
 				if(v[i]>=vv[j]){

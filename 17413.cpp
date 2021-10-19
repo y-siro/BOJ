@@ -8,6 +8,8 @@ using namespace std;
 #define endl "\n"
 typedef long long ll;
 
+// boj 17413 : string, ds-stack
+
 bool c=false;
 string str;
 stack<char> s;

@@ -1,55 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define fast ios_base::sync_with_stdio(false); cin.tie(NULL), cout.tie(NULL)
+#define ll long long
+#define vc vector
 #define vi vector<int>
+#define vs vector<string>
 #define pb push_back
-#define mp make_pair
+#define pq priority_queue<int>
+#define pql priority_queue<int, vector<int>, greater<> >
 #define pii pair<int,int>
-#define endl "\n"
-typedef long long ll;
+#define pll pair<ll,ll>
 
-// BOJ 2559 : prefix sum, two pointer
-const int M=100001;
-int n,k,max_val=-1e9,sum=0;
-int arr[M],d[M];
-
-// pass
+int N,K;
+int psum[101010];
 
 int main(void){
     fast;
-    cin>>n>>k;
-    for(int i=0;i<n;++i) cin>>arr[i];
-    for(int i=0;i<k;++i){
-        sum+=arr[i];
+    cin>>N>>K;
+    vector<int> A(N);
+    for(int i=0;i<N;++i) {
+        cin>>A[i];
+        if(!i) psum[i]=A[i];
+        else psum[i]=psum[i-1]+A[i];
     }
-    d[0]=sum-arr[0];
-    max_val=sum;
-    for(int i=0;i<n-k;++i){
-        sum=d[i]+arr[i+k];
-        d[i+1]=sum-arr[i+1];
-        max_val=max(max_val,sum);
-        sum=0;
-    }
-    cout << max_val;
+    int s=0;
+    for(int i=0;i<K;++i) s+=A[i];
 
-    return 0;
+    int ret=s;
+    for(int i=K;i<N;++i){
+        ret=max(ret,psum[i]-psum[i-K]);
+    }
+    cout<<ret;
 }
-
-
-// timeout
-int main(void){
-    fast;
-    cin>>n>>k;
-    for(int i=0;i<n;++i) cin>>arr[i];
-    for(int i=0;i<n-k;++i){
-        for(int j=i;j<i+k;++j){
-            sum[i]+=arr[j];
-        }
-        max_val=max(max_val,sum[i]);
-    }
-
-    cout << max_val;
-
-    return 0;
-}
-

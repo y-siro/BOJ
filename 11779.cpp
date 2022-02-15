@@ -10,7 +10,7 @@ using namespace std;
 #define pii pair<int,int>
 #define pll pair<ll,ll>
 
-const int INF = 987654321;
+const int INF = 1e9 + 7;
 int N, M, s, e;
 vector<pii> A[1010];
 int d[1010], path[1010];

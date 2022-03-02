@@ -5,39 +5,37 @@ using namespace std;
 #define pii pair<long, long>
 
 string s, t;
-vector<pair<char, int>> A;
+vector<int> A;
 int cnt = 0;
 
 bool check_prev(int N) {
 	for (int i = 0; i < N; ++i) {
-		if (!A[i].second or A[i].second <= A[N].second) return false;
+		if (!A[i] or A[i] <= A[N]) return false;
 	}
 	return true;
 }
 
 bool complete() {
 	for (int i = 0; i < A.size(); ++i) {
-		if (!A[i].second) return false;
+		if (!A[i]) return false;
 	}
 	return true;
 }
 
 void del() {
-	for (int i = 0; i < A.size(); ++i) A[i].second--;
+	for (int i = 0; i < A.size(); ++i) A[i]--;
 }
 
 int main(void) {
 	fast;
 
 	cin >> s >> t;
-
-	for (int i = 0; i < t.size(); ++i)	A.push_back({ t[i],0 });
-
+	A.resize(t.size());
 	for (int i = 0; i < s.size(); ++i) {
 		for (int j = 0; j < t.size(); ++j) {
 			if (s[i] == t[j]) {
 				if (check_prev(j)) {
-					A[j].second++;
+					A[j]++;
 					if (complete()) {
 						del(); cnt++;
 					}
